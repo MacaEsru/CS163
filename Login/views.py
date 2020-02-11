@@ -36,16 +36,18 @@ class CustonAuthToken(ObtainAuthToken):
 class ExampleList2(APIView):
     # Método GET para solciitar info
     def get(self, request, format=None):
-        print("Método get filter")
+        print("Método get")
         queryset = Example2.objects.filter(delete = False)
         #many = True Si aplica si retorno  multiples objetos
         serializer = Example2Serializers(queryset, many=True)
         return Response(serializer.data)
     
     def post(self, request, format=None):
+        print("Método post")
         serializer = Example2Serializers(data = request.data)
         if serializer.is_valid():
             serializer.save()
             datas = serializer.data
             return Response(datas)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
