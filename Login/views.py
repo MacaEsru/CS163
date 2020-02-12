@@ -44,10 +44,10 @@ class ExampleList2(APIView):
     
     def post(self, request, format=None):
         print("Método post")
-        serializer = Example2Serializers(data = request.data)
+        serializer = Example2Serializers(data=request.data)
         if serializer.is_valid():
             serializer.save()
             datas = serializer.data
             return Response(datas)
-        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
